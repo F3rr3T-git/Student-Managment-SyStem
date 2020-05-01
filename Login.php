@@ -1,3 +1,16 @@
+
+<?php
+
+session_start();
+
+if(isset($_SESSION[uid]))
+header('location:Admin/AdminDash.php');
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +56,9 @@ if(isset($_POST['login']))
 	$username = $_POST['uname'];
 	$password = $_POST['pass'];
 
-	$query = "SELECT * FROM Admin WHERE Username = '$username' AND Password = 'pass'";
+	
+
+	$query = "SELECT * FROM Admin WHERE Username = '$username' AND Password = '$password'";
 
 	$run = mysqli_query($con, $query);
 
@@ -63,7 +78,11 @@ if(isset($_POST['login']))
 
 	else
 	{
-		;
+		$data = mysqli_fetch_assoc($run);
+
+		$id = $data['Id'];
+
+		
 	}
 }
 

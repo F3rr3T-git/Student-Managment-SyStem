@@ -67,7 +67,7 @@ else
 
 		<tr>
 			<th> Image </th>
-			<td><input type="file" name="img" required="required"></td>
+			<td><input type="file" name="simg" required="required"></td>
 		</tr>
 
 
@@ -95,13 +95,18 @@ if(isset($_POST['submit']))
 	$city = $_POST['city'];
 	$pcon = $_POST['pcon'];
 	$std = $_POST['std'];
+	$image = $_FILES['simg']['name'];
+	$tempname = $_FILES['simg']['tmp_name']; 
 
-	$qry = "INSERT INTO `Student`(`Id`, `RollNo`, `Name`, `City`, `ParentContact`, `Standard`, `Image`) VALUES (
-	'$name','$name','$city','$pcon','$std','')";
+	move_uploaded_file($tempname, "../DataImages/$image");
+
+
+	$qry = "INSERT INTO Student (RollNo, Name, City, ParentContact, Standard, Image) VALUES (
+	'$rollno','$name','$city','$pcon','$std', '$image')";
 
 	$run = mysqli_query($con, $qry);
 
-	echo "$run";
+	echo mysqli_error($con);
 
 	if($run == true)
 	{

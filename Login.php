@@ -3,7 +3,7 @@
 
 session_start();
 
-if(isset($_SESSION[uid]))
+if(isset($_SESSION['uid']))
 header('location:Admin/AdminDash.php');
 
 
@@ -21,7 +21,7 @@ header('location:Admin/AdminDash.php');
 
 <body>
 
-	<h1 align="center"> Admin Login</h1>
+	<h1 align="center"> Admin Login </h1>
 
 <form method="post" action="Login.php">
 
@@ -64,6 +64,8 @@ if(isset($_POST['login']))
 
 	$row = mysqli_num_rows($run);
 
+
+
 	if($row < 1)
 	{
 		echo 
@@ -81,7 +83,10 @@ if(isset($_POST['login']))
 		$data = mysqli_fetch_assoc($run);
 
 		$id = $data['Id'];
+       
+        $_SESSION['uid'] = $id;
 
+        header('location:Admin/AdminDash.php');
 		
 	}
 }

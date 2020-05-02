@@ -63,7 +63,65 @@
 
 <?php
 
+if(isset($_POST['submit']))
+{
+	$standard = $_POST['std'];
+	$rollno = $_POST['rollno'];
 
+	include('dbcon.php');
+
+	$qry = "SELECT * FROM Student WHERE RollNo = '$rollno' AND Standard = '$standard'";
+
+	$run = mysqli_query($con, $qry);
+
+	if(mysqli_num_rows($run) > 0)
+	{
+		$data = mysqli_fetch_assoc($run);
+		
+		?>
+
+		<table border="1" align="center" style="width: 50%; margin-top: 20px">
+
+			<tr>
+				<th colspan="3"> Student Details </th>
+			</tr>
+
+			<tr>
+				<td rowspan="5"> <img src="DataImages/<?php echo $data['Image']; ?>" style="min-width: 120px; max-height: 150px; padding-left: 10px;"> </td>
+				<th> Roll No. </th>
+				<td><?php echo $data['RollNo'];?></td>
+			</tr>
+
+			<tr>
+				<th> Name </th>
+				<td><?php echo $data['Name'];?></td>
+			</tr>
+
+			<tr>
+				<th> Standard </th>
+				<td><?php echo $data['Standard'];?></td>
+			</tr>
+
+			<tr>
+				<th> Parent's Contact No.  </th>
+				<td><?php echo $data['ParentContact'];?></td>
+			</tr>
+
+			<tr>
+				<th> City </th>
+				<td><?php echo $data['City'];?></td>
+			</tr>
+
+		</table>
+
+		<?php
+
+	}
+	else
+	{
+		echo "<script>alert('No such student found')</script>";
+	}
+}
 
 
 ?>

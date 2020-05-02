@@ -26,6 +26,7 @@ else
 <body>
 
 <div class="admintitle" align="center">
+	
 	<h4><a href="AdminDash.php" style="float: left; margin-left: 30px; color: #fff; font-size: 17px;"> Back </a></h4>
 	<h4><a href="Logout.php" style="float: right; margin-right: 30px; color: #fff; font-size: 17px;"> Logout </a></h4>
 	<h1> Welcome to Admin Dashboard </h1>
